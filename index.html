@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Complexity Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <header class="header">
+      <h1>Code Complexity Analyzer</h1>
+      <p class="subtitle">Analyze structure • detect complexity • get improvement guidance</p>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main-layout">
+
+      <!-- LEFT PANEL -->
+      <section class="left-panel">
+
+        <div class="panel-header">
+          <h3>Code Input</h3>
+          <span class="hint">Supports C / C++ / Python-style syntax</span>
+        </div>
+
+        <textarea id="codeInput" placeholder="// Paste your code here..."></textarea>
+
+        <!-- Highlighted Output -->
+        <div class="panel-header small">
+          <h4>Highlighted Analysis</h4>
+          <span class="hint">Problem areas + suggestions</span>
+        </div>
+
+        <div id="codeDisplay">
+          <p class="empty-state">Run analysis to highlight problem areas</p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="btn-group">
+          <button onclick="analyzeCode()">Analyze</button>
+          <button onclick="loadSample()">Load Sample</button>
+          <button onclick="clearCode()">Clear</button>
+        </div>
+
+      </section>
+
+      <!-- RIGHT PANEL -->
+      <section class="right-panel">
+
+        <!-- OVERVIEW -->
+        <div class="panel-header">
+          <h3>Analysis Overview</h3>
+          <span class="hint">Metrics & complexity breakdown</span>
+        </div>
+
+        <!-- METRICS -->
+        <div class="cards">
+          <div class="card">Lines <span id="lines">0</span></div>
+          <div class="card">Functions <span id="functions">0</span></div>
+          <div class="card">Loops <span id="loops">0</span></div>
+          <div class="card">Conditions <span id="conditions">0</span></div>
+          <div class="card">Score <span id="score">0</span></div>
+          <div class="card">Cyclomatic <span id="cyclomatic">0</span></div>
+          <div class="card highlight-card">Big-O <span id="bigO">O(1)</span></div>
+          <div class="card highlight-card">Quality <span id="quality">100</span></div>
+        </div>
+
+        <!-- COMPLEXITY BAR -->
+        <div class="complexity-section">
+          <div id="complexityBar">
+            <div id="barFill"></div>
+          </div>
+          <p class="bar-label">Complexity Level</p>
+        </div>
+
+        <!-- VERDICT -->
+        <div id="verdictBox">
+          <strong>Verdict:</strong> <span id="verdict">-</span>
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="summary-box">
+          <p id="summary">Run analysis to get a summary</p>
+        </div>
+
+        <!-- INSIGHTS -->
+        <div id="insightBox">
+          <div class="panel-header small">
+            <h4>Code Insights</h4>
+            <span class="hint">What needs attention</span>
+          </div>
+          <ul id="insights">
+            <li>Run analysis to see insights</li>
+          </ul>
+        </div>
+
+        <!-- 🔥 NEW: REFACTOR SUGGESTIONS -->
+        <div id="refactorBox">
+          <div class="panel-header small">
+            <h4>Auto Refactor Suggestions</h4>
+            <span class="hint">How to improve your code</span>
+          </div>
+          <ul id="refactorList">
+            <li>Run analysis to see suggestions</li>
+          </ul>
+        </div>
+
+        <!-- 🔥 NEW: COMPLEXITY GRAPH -->
+        <div id="chartBox">
+
+          <!-- Toggle controls -->
+          <div id="tcControls">
+            <label><input type="checkbox" id="toggleN" checked> O(n)</label>
+            <label><input type="checkbox" id="toggleN2"> O(n²)</label>
+            <label><input type="checkbox" id="toggleLog"> O(log n)</label>
+          </div>
+
+          <canvas id="tcChart"></canvas>
+
+        </div>
+
+        <!-- FUNCTION ANALYSIS -->
+        <div id="functionAnalysis">
+          <div class="panel-header small">
+            <h4>Function Analysis</h4>
+            <span class="hint">Complexity per function</span>
+          </div>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
